@@ -52,6 +52,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Custom storytelling colors
+				'warm-glow': 'hsl(var(--warm-glow))',
+				'story-gold': 'hsl(var(--story-gold))',
+				'vintage-brown': 'hsl(var(--vintage-brown))',
+				'cozy-cream': 'hsl(var(--cozy-cream))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +67,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-warm': 'var(--gradient-warm)',
+				'gradient-story': 'var(--gradient-story)',
+			},
+			boxShadow: {
+				'story': 'var(--shadow-story)',
+				'warm': 'var(--shadow-warm)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
