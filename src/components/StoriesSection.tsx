@@ -3,73 +3,41 @@ import StoryCard from "./StoryCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, Filter, Plus } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
-const storiesData = [
-  {
-    title: "The Brave Little Sparrow",
-    narrator: "Grandmother Elena",
-    duration: "8 min",
-    region: "Eastern Europe",
-    description: "A heartwarming tale about a small sparrow who saves her village from a terrible storm through courage and determination.",
-    category: "Fairy Tale",
-    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  },
-  {
-    title: "The Wise Old Turtle",
-    narrator: "Grandfather Chen",
-    duration: "12 min",
-    region: "East Asia",
-    description: "An ancient parable about patience and wisdom, teaching children the value of taking time to think before acting.",
-    category: "Fable",
-    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  },
-  {
-    title: "The Dancing Moonbeams",
-    narrator: "Grandmama Rosa",
-    duration: "6 min",
-    region: "South America",
-    description: "A magical story of moonbeams that come alive to dance with a lonely child, bringing joy and wonder to dark nights.",
-    category: "Fantasy",
-    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  },
-  {
-    title: "The Golden Fish of Wisdom",
-    narrator: "Elder Kwame",
-    duration: "10 min",
-    region: "West Africa",
-    description: "A traditional tale about a fisherman who catches a golden fish that grants wishes, but learns that wisdom is more valuable than gold.",
-    category: "Legend",
-    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  },
-  {
-    title: "The Singing Oak Tree",
-    narrator: "Grandmother Aileen",
-    duration: "9 min",
-    region: "Ireland",
-    description: "A Celtic story of an ancient oak tree that sings lullabies to protect the children of the village from nightmares.",
-    category: "Folk Tale",
-    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  },
-  {
-    title: "The Star Weaver's Gift",
-    narrator: "Grandmother Lakshmi",
-    duration: "14 min",
-    region: "South Asia",
-    description: "A beautiful story about a celestial weaver who creates constellations and teaches a young girl the art of finding patterns in the sky.",
-    category: "Mythology",
-    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  }
-];
+// We'll load stories from Supabase now
 
 const categories = ["All", "Fairy Tale", "Fable", "Fantasy", "Legend", "Folk Tale", "Mythology"];
 
 const StoriesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [stories, setStories] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchStories();
+  }, []);
+
+  const fetchStories = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('stories')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setStories(data || []);
+    } catch (error) {
+      console.error('Error fetching stories:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   
   const filteredStories = selectedCategory === "All" 
-    ? storiesData 
-    : storiesData.filter(story => story.category === selectedCategory);
+    ? stories 
+    : stories.filter(story => story.category === selectedCategory);
 
   return (
     <section id="stories" className="py-16 bg-background">
@@ -108,18 +76,28 @@ const StoriesSection = () => {
 
         {/* Stories Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredStories.map((story, index) => (
-            <StoryCard
-              key={index}
-              title={story.title}
-              narrator={story.narrator}
-              duration={story.duration}
-              region={story.region}
-              description={story.description}
-              category={story.category}
-              audioUrl={story.audioUrl}
-            />
-          ))}
+          {loading ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-muted-foreground">Loading stories...</p>
+            </div>
+          ) : filteredStories.length === 0 ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-muted-foreground">No stories found. Be the first to contribute!</p>
+            </div>
+          ) : (
+            filteredStories.map((story) => (
+              <StoryCard
+                key={story.id}
+                title={story.title}
+                narrator={story.narrator}
+                duration={story.duration}
+                region={story.region}
+                description={story.description}
+                category={story.category}
+                audioUrl={story.audio_url}
+              />
+            ))
+          )}
         </div>
 
         {/* Library Actions */}
@@ -133,7 +111,7 @@ const StoriesSection = () => {
               variant="story" 
               size="lg" 
               className="gap-2" 
-              onClick={() => alert('To enable story contributions with audio uploads, please connect to Supabase using the green button in the top right!')}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <Plus className="h-5 w-5" />
               Contribute a Story
