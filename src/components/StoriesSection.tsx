@@ -12,7 +12,7 @@ const storiesData = [
     region: "Eastern Europe",
     description: "A heartwarming tale about a small sparrow who saves her village from a terrible storm through courage and determination.",
     category: "Fairy Tale",
-    audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
   },
   {
     title: "The Wise Old Turtle",
@@ -21,7 +21,7 @@ const storiesData = [
     region: "East Asia",
     description: "An ancient parable about patience and wisdom, teaching children the value of taking time to think before acting.",
     category: "Fable",
-    audioUrl: "https://www.soundjay.com/misc/sounds/magic-chime-02.wav"
+    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
   },
   {
     title: "The Dancing Moonbeams",
@@ -30,7 +30,7 @@ const storiesData = [
     region: "South America",
     description: "A magical story of moonbeams that come alive to dance with a lonely child, bringing joy and wonder to dark nights.",
     category: "Fantasy",
-    audioUrl: "https://www.soundjay.com/misc/sounds/wind-chime-02.wav"
+    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
   },
   {
     title: "The Golden Fish of Wisdom",
@@ -39,7 +39,7 @@ const storiesData = [
     region: "West Africa",
     description: "A traditional tale about a fisherman who catches a golden fish that grants wishes, but learns that wisdom is more valuable than gold.",
     category: "Legend",
-    audioUrl: "https://www.soundjay.com/misc/sounds/water-drop-02.wav"
+    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
   },
   {
     title: "The Singing Oak Tree",
@@ -48,7 +48,7 @@ const storiesData = [
     region: "Ireland",
     description: "A Celtic story of an ancient oak tree that sings lullabies to protect the children of the village from nightmares.",
     category: "Folk Tale",
-    audioUrl: "https://www.soundjay.com/misc/sounds/gentle-ocean-waves.wav"
+    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
   },
   {
     title: "The Star Weaver's Gift",
@@ -57,7 +57,7 @@ const storiesData = [
     region: "South Asia",
     description: "A beautiful story about a celestial weaver who creates constellations and teaches a young girl the art of finding patterns in the sky.",
     category: "Mythology",
-    audioUrl: "https://www.soundjay.com/misc/sounds/magic-sparkle-02.wav"
+    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
   }
 ];
 
@@ -121,12 +121,21 @@ const StoriesSection = () => {
           ))}
         </div>
 
-        {/* Load More Button */}
-        <div className="text-center">
-          <Button variant="vintage" size="lg" className="gap-2">
-            <Filter className="h-5 w-5" />
-            Load More Stories
-          </Button>
+        {/* Library Actions */}
+        <div className="text-center space-y-4">
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button variant="vintage" size="lg" className="gap-2" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <BookOpen className="h-5 w-5" />
+              Browse All Stories
+            </Button>
+            <Button variant="story" size="lg" className="gap-2" onClick={() => alert('Share functionality - Connect to social media or email to share your favorite stories!')}>
+              <Filter className="h-5 w-5" />
+              Share Collection
+            </Button>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            {filteredStories.length} stories available • {categories.length - 1} categories
+          </p>
         </div>
       </div>
     </section>

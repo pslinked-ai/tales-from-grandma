@@ -33,9 +33,9 @@ const Header = () => {
               <Heart className="h-4 w-4" />
               <span className="hidden sm:inline">Favorites</span>
             </Button>
-            <Button variant="story" size="sm" className="gap-2">
+            <Button variant="story" size="sm" className="gap-2" onClick={() => document.getElementById('stories')?.scrollIntoView({ behavior: 'smooth' })}>
               <Users className="h-4 w-4" />
-              <span className="hidden sm:inline">Share Story</span>
+              <span className="hidden sm:inline">Browse Library</span>
             </Button>
           </div>
         </div>
