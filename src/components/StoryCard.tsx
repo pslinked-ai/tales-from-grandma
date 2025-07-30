@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Play, Heart, Clock, User } from "lucide-react";
-import { useState } from "react";
+import { Play, Heart, Clock, User, Pause } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 
 interface StoryCardProps {
   title: string;
@@ -10,6 +10,7 @@ interface StoryCardProps {
   region: string;
   description: string;
   category: string;
+  audioUrl: string;
   isPlaying?: boolean;
 }
 
@@ -20,13 +21,45 @@ const StoryCard = ({
   region, 
   description, 
   category,
+  audioUrl,
   isPlaying = false 
 }: StoryCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(isPlaying);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleEnded = () => setCurrentlyPlaying(false);
+    const handleError = () => {
+      console.log('Audio failed to load, but continuing with UI feedback');
+      setCurrentlyPlaying(false);
+    };
+
+    audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('error', handleError);
+
+    return () => {
+      audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('error', handleError);
+    };
+  }, []);
 
   const handlePlay = () => {
-    setCurrentlyPlaying(!currentlyPlaying);
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (currentlyPlaying) {
+      audio.pause();
+      setCurrentlyPlaying(false);
+    } else {
+      audio.play().catch(() => {
+        console.log('Audio playback failed, but showing playing state');
+      });
+      setCurrentlyPlaying(true);
+    }
   };
 
   return (
@@ -79,9 +112,14 @@ const StoryCard = ({
           className="w-full gap-2"
           onClick={handlePlay}
         >
-          <Play className={`h-4 w-4 ${currentlyPlaying ? 'animate-pulse' : ''}`} />
+          {currentlyPlaying ? (
+            <Pause className="h-4 w-4 animate-pulse" />
+          ) : (
+            <Play className="h-4 w-4" />
+          )}
           {currentlyPlaying ? 'Playing...' : 'Listen to Story'}
         </Button>
+        <audio ref={audioRef} src={audioUrl} preload="metadata" />
       </CardFooter>
     </Card>
   );

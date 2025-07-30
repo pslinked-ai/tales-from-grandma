@@ -11,7 +11,8 @@ const storiesData = [
     duration: "8 min",
     region: "Eastern Europe",
     description: "A heartwarming tale about a small sparrow who saves her village from a terrible storm through courage and determination.",
-    category: "Fairy Tale"
+    category: "Fairy Tale",
+    audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
   },
   {
     title: "The Wise Old Turtle",
@@ -19,7 +20,8 @@ const storiesData = [
     duration: "12 min",
     region: "East Asia",
     description: "An ancient parable about patience and wisdom, teaching children the value of taking time to think before acting.",
-    category: "Fable"
+    category: "Fable",
+    audioUrl: "https://www.soundjay.com/misc/sounds/magic-chime-02.wav"
   },
   {
     title: "The Dancing Moonbeams",
@@ -27,7 +29,8 @@ const storiesData = [
     duration: "6 min",
     region: "South America",
     description: "A magical story of moonbeams that come alive to dance with a lonely child, bringing joy and wonder to dark nights.",
-    category: "Fantasy"
+    category: "Fantasy",
+    audioUrl: "https://www.soundjay.com/misc/sounds/wind-chime-02.wav"
   },
   {
     title: "The Golden Fish of Wisdom",
@@ -35,7 +38,8 @@ const storiesData = [
     duration: "10 min",
     region: "West Africa",
     description: "A traditional tale about a fisherman who catches a golden fish that grants wishes, but learns that wisdom is more valuable than gold.",
-    category: "Legend"
+    category: "Legend",
+    audioUrl: "https://www.soundjay.com/misc/sounds/water-drop-02.wav"
   },
   {
     title: "The Singing Oak Tree",
@@ -43,7 +47,8 @@ const storiesData = [
     duration: "9 min",
     region: "Ireland",
     description: "A Celtic story of an ancient oak tree that sings lullabies to protect the children of the village from nightmares.",
-    category: "Folk Tale"
+    category: "Folk Tale",
+    audioUrl: "https://www.soundjay.com/misc/sounds/gentle-ocean-waves.wav"
   },
   {
     title: "The Star Weaver's Gift",
@@ -51,7 +56,8 @@ const storiesData = [
     duration: "14 min",
     region: "South Asia",
     description: "A beautiful story about a celestial weaver who creates constellations and teaches a young girl the art of finding patterns in the sky.",
-    category: "Mythology"
+    category: "Mythology",
+    audioUrl: "https://www.soundjay.com/misc/sounds/magic-sparkle-02.wav"
   }
 ];
 
@@ -110,6 +116,7 @@ const StoriesSection = () => {
               region={story.region}
               description={story.description}
               category={story.category}
+              audioUrl={story.audioUrl}
             />
           ))}
         </div>
