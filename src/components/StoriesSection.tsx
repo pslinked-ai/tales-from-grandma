@@ -1,7 +1,8 @@
+
 import StoryCard from "./StoryCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, Filter } from "lucide-react";
+import { BookOpen, Filter, Plus } from "lucide-react";
 import { useState } from "react";
 
 const storiesData = [
@@ -12,7 +13,7 @@ const storiesData = [
     region: "Eastern Europe",
     description: "A heartwarming tale about a small sparrow who saves her village from a terrible storm through courage and determination.",
     category: "Fairy Tale",
-    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
+    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
   },
   {
     title: "The Wise Old Turtle",
@@ -21,7 +22,7 @@ const storiesData = [
     region: "East Asia",
     description: "An ancient parable about patience and wisdom, teaching children the value of taking time to think before acting.",
     category: "Fable",
-    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
+    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
   },
   {
     title: "The Dancing Moonbeams",
@@ -30,7 +31,7 @@ const storiesData = [
     region: "South America",
     description: "A magical story of moonbeams that come alive to dance with a lonely child, bringing joy and wonder to dark nights.",
     category: "Fantasy",
-    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
+    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
   },
   {
     title: "The Golden Fish of Wisdom",
@@ -39,7 +40,7 @@ const storiesData = [
     region: "West Africa",
     description: "A traditional tale about a fisherman who catches a golden fish that grants wishes, but learns that wisdom is more valuable than gold.",
     category: "Legend",
-    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
+    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
   },
   {
     title: "The Singing Oak Tree",
@@ -48,7 +49,7 @@ const storiesData = [
     region: "Ireland",
     description: "A Celtic story of an ancient oak tree that sings lullabies to protect the children of the village from nightmares.",
     category: "Folk Tale",
-    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
+    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
   },
   {
     title: "The Star Weaver's Gift",
@@ -57,7 +58,7 @@ const storiesData = [
     region: "South Asia",
     description: "A beautiful story about a celestial weaver who creates constellations and teaches a young girl the art of finding patterns in the sky.",
     category: "Mythology",
-    audioUrl: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBShByQLCbykGNH/K9N2QQAoZYLPo569VFApOquP2vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpO/1vGEbBSdAyAMEbisFOoHO9dyQPgkZYbHl6qpSEwlFqOXxvWMeByU+xQULaSwELHzA7d+VQQsYaL3r67pLFQpCpOmIAABGAAA="
+    audioUrl: "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAATMTAG1wM3NwZWx0AHNwZWx0AHVuaWNvZGUAMQD/+xDEAAP8AAsAJAIgAgQgAABEC4IBEAQCAQD/+xDEAQT8AgMAJAKgCgQgAABI4c5/+xDEAwT8AAsAJAKgCgQgAABE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAAAABMYW1lMy45OAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
   }
 ];
 
@@ -128,9 +129,14 @@ const StoriesSection = () => {
               <BookOpen className="h-5 w-5" />
               Browse All Stories
             </Button>
-            <Button variant="story" size="lg" className="gap-2" onClick={() => alert('Share functionality - Connect to social media or email to share your favorite stories!')}>
-              <Filter className="h-5 w-5" />
-              Share Collection
+            <Button 
+              variant="story" 
+              size="lg" 
+              className="gap-2" 
+              onClick={() => alert('To enable story contributions with audio uploads, please connect to Supabase using the green button in the top right!')}
+            >
+              <Plus className="h-5 w-5" />
+              Contribute a Story
             </Button>
           </div>
           <p className="text-sm text-muted-foreground">

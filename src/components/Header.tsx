@@ -1,5 +1,6 @@
+
 import { Button } from "@/components/ui/button";
-import { Heart, BookOpen, Users } from "lucide-react";
+import { Heart, BookOpen, Plus } from "lucide-react";
 
 const Header = () => {
   return (
@@ -33,9 +34,14 @@ const Header = () => {
               <Heart className="h-4 w-4" />
               <span className="hidden sm:inline">Favorites</span>
             </Button>
-            <Button variant="story" size="sm" className="gap-2" onClick={() => document.getElementById('stories')?.scrollIntoView({ behavior: 'smooth' })}>
-              <Users className="h-4 w-4" />
-              <span className="hidden sm:inline">Browse Library</span>
+            <Button 
+              variant="story" 
+              size="sm" 
+              className="gap-2" 
+              onClick={() => alert('To enable story contributions, connect to Supabase using the green button in the top right!')}
+            >
+              <Plus className="h-4 w-4" />
+              <span className="hidden sm:inline">Contribute a Story</span>
             </Button>
           </div>
         </div>
