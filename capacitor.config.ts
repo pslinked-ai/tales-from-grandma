@@ -4,7 +4,10 @@ const config: CapacitorConfig = {
   appId: 'app.lovable.c78dd1c52c55489da1fbeaee77cc4014',
   appName: 'tales-from-grandma',
   webDir: 'dist',
-  // Remove server config for production builds
+  server: {
+    url: 'https://your-published-app.lovable.app', // Replace with your actual published URL
+    cleartext: true
+  },
   plugins: {
     SplashScreen: {
       launchShowDuration: 2000,
